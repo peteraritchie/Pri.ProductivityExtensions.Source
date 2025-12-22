@@ -107,11 +107,19 @@ jobs:
             cat commits.txt
           fi
           scope="patch"
-          if grep -q "BREAKING CHANGE" commits.txt; then
+
+          if grep -q "BREAKING CHANGE: " commits.txt;
+          then
             scope="major"
-          elif grep -q -E "^feat(:|\(.+\):)" commits.txt; then
+          elif grep -q -E "^[[:alpha:]]+(\([[:alpha:]]+\))?!: " commits.txt;
+          then
+            scope="major"
+          elif grep -q -E "^feat(\([[:alpha:]]+\))?: " commits.txt;
+          then
             scope="minor"
-          elif grep -q -E "^fix(:|\(.+\):)" commits.txt; then
+          elif grep -q -E "^(fix|chore|build|ci|docs|style|refactor\
+          |perf|test)(\([[:alpha:]]+\))?: " commits.txt;
+          then
             scope="patch"
           fi
 

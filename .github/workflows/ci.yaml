@@ -27,11 +27,11 @@ env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 10.0.x
   NUGET_PACKAGE_SOURCE: >-
-    ${{ (inputs.dry-run != '' && inputs.dry-run || true)
+    ${{ (inputs.dry-run != '' && inputs.dry-run || false)
     && 'https://apiint.nugettest.org/v3/index.json'
     || 'https://api.nuget.org/v3/index.json' }}
   NUGET_AUDIENCE: >-
-    ${{ (inputs.dry-run != '' && inputs.dry-run || true)
+    ${{ (inputs.dry-run != '' && inputs.dry-run || false)
     && 'https://int.nugettest.org'
     || 'https://www.nuget.org' }}
 
@@ -143,7 +143,7 @@ jobs:
   publish-nuget:
     environment:
       name: >-
-        ${{ (inputs.dry-run != '' && inputs.dry-run || true)
+        ${{ (inputs.dry-run != '' && inputs.dry-run || false)
         && 'NuGet.org-TEST'
         || 'NuGet.org' }}
     name: Publish NuGet to NuGet.org
