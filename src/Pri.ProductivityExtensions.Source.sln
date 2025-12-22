@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pri.ProductivityExtensions.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{28101CBA-4593-4274-8F45-E007AAFC4BC2}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\workflows\ci.yaml = ..\.github\workflows\ci.yaml
+		..\.github\workflows\pr.yaml = ..\.github\workflows\pr.yaml
 		..\.github\workflows\determine-next-release-version.yaml = ..\.github\workflows\determine-next-release-version.yaml
 		..\.github\workflows\dotnet-build-and-verify.yaml = ..\.github\workflows\dotnet-build-and-verify.yaml
 	EndProjectSection
@@ -63,7 +63,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3778B6A1-3F90-457F-80AD-2987486A3864} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{28101CBA-4593-4274-8F45-E007AAFC4BC2} = {288AA24C-8670-4120-971B-22A2CC3EE829}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
