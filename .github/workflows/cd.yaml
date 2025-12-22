@@ -1,0 +1,149 @@
+---
+name: CD
+run-name: >
+  Create release and publish packages - '${{ github.event.head_commit.message }}',
+  from ${{ github.ref }} by @${{ github.actor }}
+
+on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Use dry-run"
+        required: false
+        type: boolean
+        default: false
+      version:
+        description: "Version to release"
+        required: true
+        type: string
+      artifact-name:
+        description: "Name of the artifact to download"
+        required: false
+        type: string
+
+env:
+  CONFIGURATION: Release
+  DOTNET_CORE_VERSION: 10.0.x
+  NUGET_PACKAGE_SOURCE: >-
+    ${{ (inputs.dry-run != '' && inputs.dry-run || false)
+    && 'https://apiint.nugettest.org/v3/index.json'
+    || 'https://api.nuget.org/v3/index.json' }}
+  NUGET_AUDIENCE: >-
+    ${{ (inputs.dry-run != '' && inputs.dry-run || false)
+    && 'https://int.nugettest.org'
+    || 'https://www.nuget.org' }}
+
+jobs:
+  # CD: Release Packages
+  create-packages-release:
+    name: Create Packages Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # to be able to publish a GitHub release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Tag
+        id: create-tag
+        run: |
+          git tag v${{ inputs.version }}
+            echo "tag=\
+            v${{ inputs.version }}" \
+            >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        id: create-packages-release
+        uses: actions/create-release@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.create-tag.outputs.tag }}
+          release_name: Release ${{ steps.create-tag.outputs.tag }}
+          body: |
+            Release created automatically by GitHub Actions.
+          draft: false
+          prerelease: ${{ env.prerelease }}
+
+      - name: download artifact for Release
+        id: download-artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ./${{ inputs.artifact-name }}
+
+      # re-zip to add to the Release
+      - name: create zip
+        run: |
+          (cd ${{ inputs.artifact-name }} && zip -r ${{ inputs.artifact-name }}.zip .)
+
+      - name: Upload a Release Asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-packages-release.outputs.upload_url }}
+          asset_path: ${{ inputs.artifact-name }}/${{ inputs.artifact-name }}.zip
+          asset_name: ${{ inputs.artifact-name }}.zip
+          asset_content_type: application/zip
+
+  # CD: Publish packages to GitHub Packages
+  publish-github-nuget:
+    name: Publish NuGet to GitHub Packages
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write  # for pushing GitHub Nuget packages
+    steps:
+      - name: download artifact for Release
+        id: download-artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ./${{ inputs.artifact-name }}
+
+      # Publish the package to GitHub Packages
+      - name: Publish the package to GitHub Packages
+        #  if: true
+        run: |
+          dotnet nuget add source --username ${{ github.repository_owner }} \
+            --password ${{ secrets.GITHUB_TOKEN }} \
+            --store-password-in-clear-text \
+            --name github \
+            "https://nuget.pkg.github.com/${{ github.repository_owner }}\
+            /index.json"
+          dotnet nuget disable source nuget.org
+          dotnet nuget push ${{ inputs.artifact-name }}/*.nupkg \
+          --api-key ${{ secrets.GITHUB_TOKEN }} \
+          --source "github" --skip-duplicate
+
+  # CD: Publish packages to NuGet.org
+  publish-nuget:
+    environment:
+      name: >-
+        ${{ (inputs.dry-run != '' && inputs.dry-run || false)
+        && 'NuGet.org-TEST'
+        || 'NuGet.org' }}
+    name: Publish NuGet to NuGet.org
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # enable GitHub OIDC token issuance for this job
+    steps:
+      - name: download artifact for Release
+        id: download-artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ./${{ inputs.artifact-name }}
+      - name: NuGet login (OIDC)
+        uses: NuGet/login@v1
+        id: nuget_login
+        with:
+          user: ${{ secrets.NUGET_ORG_USERNAME }}
+          audience: ${{ env.NUGET_AUDIENCE }}
+          token-service-url: ${{ env.NUGET_AUDIENCE }}/api/v2/token
+      - name: push to NuGet
+        run: |
+          dotnet nuget push ${{ inputs.artifact-name }}/*.nupkg \
+            --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" \
+            --source ${{ env.NUGET_PACKAGE_SOURCE }} \
+            --skip-duplicate
