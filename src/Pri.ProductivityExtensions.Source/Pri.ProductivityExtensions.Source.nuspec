@@ -14,11 +14,13 @@
         <repository type="git" url="https://github.com/peteraritchie/Pri.ProductivityExtensions.Source"/>
         <description>Productivity Extensions included as source to provide modern C#/.NET support in .NET Standard 2.0 projects.</description>
         <releaseNotes>Initial release.</releaseNotes>
+        <readme>README.md</readme>
         <copyright>© 2025 Peter Ritchie</copyright>
         <tags>source standard productivity modern</tags>
     </metadata>
     <files>
         <file src="*.cs" target="contentFiles/cs/netstandard2.0/Pri.ProductivityExtensions" />
         <file src="icon.png" target="." />
+        <file src="README.md" target="." />
     </files>
 </package>
