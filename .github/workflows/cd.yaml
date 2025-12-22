@@ -5,7 +5,7 @@ run-name: >
   from ${{ github.ref }} by @${{ github.actor }}
 
 on:  # yamllint disable-line rule:truthy
-  workflow_dispatch:
+  workflow_call:
     inputs:
       dry-run:
         description: "Use dry-run"
