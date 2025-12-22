@@ -59,8 +59,10 @@ jobs:
   create-packages-release:
     if: ${{ inputs.cdEnabled == 'true' }}
     name: Create Packages Release
-    uses: ./.github/workflows/cd.yaml
     needs: [build-and-verify, determine-next-release-version]
+    uses: ./.github/workflows/cd.yaml
+    permissions:
+      contents: write  # to be able to publish a GitHub release
     with:
       dry-run: ${{ inputs.dry-run }}
       version: ${{ needs.determine-next-release-version.outputs.version }}
