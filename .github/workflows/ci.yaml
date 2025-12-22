@@ -63,6 +63,7 @@ jobs:
     uses: ./.github/workflows/cd.yaml
     permissions:
       contents: write  # to be able to publish a GitHub release
+      packages: write  # for pushing GitHub Nuget packages
     with:
       dry-run: ${{ inputs.dry-run }}
       version: ${{ needs.determine-next-release-version.outputs.version }}
