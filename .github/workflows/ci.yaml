@@ -64,6 +64,7 @@ jobs:
     permissions:
       contents: write  # to be able to publish a GitHub release
       packages: write  # for pushing GitHub Nuget packages
+      id-token: write  # enable GitHub OIDC token issuance for this job
     with:
       dry-run: ${{ inputs.dry-run }}
       version: ${{ needs.determine-next-release-version.outputs.version }}
