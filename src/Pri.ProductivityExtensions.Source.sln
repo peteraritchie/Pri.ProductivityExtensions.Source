@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pri.ProductivityExtensions.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{28101CBA-4593-4274-8F45-E007AAFC4BC2}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\cd.yaml = ..\.github\workflows\cd.yaml
 		..\.github\workflows\ci.yaml = ..\.github\workflows\ci.yaml
 		..\.github\workflows\determine-next-release-version.yaml = ..\.github\workflows\determine-next-release-version.yaml
 		..\.github\workflows\dotnet-build-and-verify.yaml = ..\.github\workflows\dotnet-build-and-verify.yaml
