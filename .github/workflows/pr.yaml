@@ -24,7 +24,7 @@ jobs:
 
   # CI: build and verify tests
   build-and-verify:
-    name: Build and verify tests
+    name: Build source code and verify tests
     needs: determine-next-release-version
     uses: ./.github/workflows/dotnet-build-and-verify.yaml
     with:
