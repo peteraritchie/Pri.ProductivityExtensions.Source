@@ -30,11 +30,14 @@
 
 using System.Runtime.CompilerServices;
 
+#pragma warning disable IDE0130
 namespace System;
+#pragma warning restore IDE0130
 
 /// <summary>
 /// Provides extension methods for handling exceptions and validating arguments.
 /// </summary>
+[Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public static class ExceptionExtensions
 {
 	extension(ArgumentException)
