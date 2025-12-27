@@ -22,11 +22,11 @@ on:  # yamllint disable-line rule:truthy
         required: false
         type: boolean
         default: false
-      cdEnabled:
-        description: "Enable CD"
+      cdDisabled:
+        description: "Disable CD"
         required: false
         type: boolean
-        default: true
+        default: false
 
 env:
   CONFIGURATION: Release
@@ -62,7 +62,7 @@ jobs:
 
   # CD: Release Packages
   create-packages-release:
-    if: ${{ inputs.cdEnabled == 'true' }}
+    if: ${{ inputs.cdDisabled == 'true' }}
     name: Create Packages Release
     needs: [build-and-verify, determine-next-release-version]
     uses: ./.github/workflows/cd.yaml
