@@ -41,6 +41,7 @@ namespace System;
 /// int lastElement = someArray[^1]; // lastElement = 5
 /// </code>
 /// </remarks>
+[Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public readonly struct Index : IEquatable<Index>
 {
 	private readonly int _value;
@@ -178,6 +179,7 @@ public readonly struct Index : IEquatable<Index>
 /// int[] subArray2 = someArray[1..^0]; // { 2, 3, 4, 5 }
 /// </code>
 /// </remarks>
+[Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public readonly struct Range : IEquatable<Range>
 {
 	/// <summary>Represent the inclusive start index of the Range.</summary>
