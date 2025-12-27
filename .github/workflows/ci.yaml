@@ -62,7 +62,7 @@ jobs:
 
   # CD: Release Packages
   create-packages-release:
-    if: ${{ inputs.cdDisabled == 'true' }}
+    if: ${{ inputs.cdDisabled != 'true' }}
     name: Create Packages Release
     needs: [build-and-verify, determine-next-release-version]
     uses: ./.github/workflows/cd.yaml
