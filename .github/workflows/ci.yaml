@@ -22,6 +22,11 @@ on:  # yamllint disable-line rule:truthy
         required: false
         type: boolean
         default: false
+      cdEnabled:
+        description: "Enable CD"
+        required: false
+        type: boolean
+        default: true
 
 env:
   CONFIGURATION: Release
