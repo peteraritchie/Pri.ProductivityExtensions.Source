@@ -39,7 +39,7 @@ env:
     ${{ (inputs.dry-run != '' && inputs.dry-run || false)
     && 'https://int.nugettest.org'
     || 'https://www.nuget.org' }}
-  DRY_RUN: ${{ (inputs.dry-run != '' && inputs.dry-run || false)
+  DRY_RUN: ${{ (inputs.dry-run != '' && inputs.dry-run || false) }}
 
 jobs:
   # Determining next release version from current release version
