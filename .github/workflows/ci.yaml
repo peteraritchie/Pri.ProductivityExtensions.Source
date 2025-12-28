@@ -75,5 +75,4 @@ jobs:
       dry-run: ${{ (inputs.dry-run != '' && inputs.dry-run || false) }}
       version: ${{ needs.determine-next-release-version.outputs.version }}
       artifact-name: Packages
-    secrets:
-      NUGET_ORG_USERNAME: ${{ secrets.NUGET_ORG_USERNAME }}
+    secrets: inherit
