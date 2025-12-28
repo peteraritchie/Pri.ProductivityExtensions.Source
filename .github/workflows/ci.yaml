@@ -39,6 +39,7 @@ env:
     ${{ (inputs.dry-run != '' && inputs.dry-run || false)
     && 'https://int.nugettest.org'
     || 'https://www.nuget.org' }}
+  DRY_RUN: ${{ (inputs.dry-run != '' && inputs.dry-run || false)
 
 jobs:
   # Determining next release version from current release version
@@ -62,7 +63,7 @@ jobs:
 
   # CD: Release Packages
   create-packages-release:
-    # if: ${{ github.event.inputs.cdDisabled != 'true' }}
+    if: ${{ (inputs.cdDisabled != '' && inputs.cdDisabled != 'true' || true) }}
     name: Create Packages Release
     needs: [build-and-verify, determine-next-release-version]
     uses: ./.github/workflows/cd.yaml
@@ -71,6 +72,8 @@ jobs:
       packages: write  # for pushing GitHub Nuget packages
       id-token: write  # enable GitHub OIDC token issuance for this job
     with:
-      dry-run: ${{ inputs.dry-run }}
+      dry-run: ${{ (inputs.dry-run != '' && inputs.dry-run || false) }}
       version: ${{ needs.determine-next-release-version.outputs.version }}
       artifact-name: Packages
+    secrets:
+      NUGET_ORG_USERNAME: ${{ secrets.NUGET_ORG_USERNAME }}
