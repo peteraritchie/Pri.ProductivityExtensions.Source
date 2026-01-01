@@ -1,6 +1,9 @@
 # Pri.ProductivityExtensions.Source
-[![CI CD](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/actions/workflows/ci.yaml/badge.svg)](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/actions/workflows/ci.yaml) ![NuGet Version](https://img.shields.io/nuget/v/Pri.ProductivityExtensions.Source)
+[![CI CD](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/actions/workflows/ci.yaml/badge.svg)](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/actions/workflows/ci.yaml)
 ![MIT](https://img.shields.io/github/license/peteraritchie/Pri.ProductivityExtensions.Source)
+[![NuGet Version](https://img.shields.io/nuget/v/Pri.ProductivityExtensions.Source)](https://www.nuget.org/packages/Pri.ProductivityExtensions.Source/)
+![GitHub Release](https://img.shields.io/github/v/release/peteraritchie/Pri.ProductivityExtensions.Source)
+
 
 Source code to enable modern C# features in .NET Standard 2.0 libraries
 
@@ -30,6 +33,7 @@ Add reference to Pri.ProductivityExtensions.Source:
 ```powershell
 dotnet add client package Pri.ProductivityExtensions.Source
 ```
+
 
 
 
