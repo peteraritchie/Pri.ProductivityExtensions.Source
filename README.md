@@ -1,5 +1,7 @@
 # Pri.ProductivityExtensions.Source
 
+[![CI CD](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/actions/workflows/ci.yaml/badge.svg)](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/actions/workflows/ci.yaml)
+
 Source code to enable modern C# features in .NET Standard 2.0 libraries
 
 Since .NET Standard 2.0 was created a variety of C# language features have
@@ -28,3 +30,4 @@ Add reference to Pri.ProductivityExtensions.Source:
 ```powershell
 dotnet add client package Pri.ProductivityExtensions.Source
 ```
+
