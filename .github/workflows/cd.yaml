@@ -42,7 +42,7 @@ jobs:
       contents: write  # to be able to publish a GitHub release
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Create Tag
         id: create-tag
