@@ -14,6 +14,8 @@ on:  # yamllint disable-line rule:truthy
       - '.github/workflows/ci.yaml'
       - '.github/workflows/dotnet-build-and-verify.yaml'
       - 'src/**'
+      - '!src/Tests/**'
+      - '!src/.editorconfig'
 
   workflow_dispatch:
     inputs:
@@ -46,6 +48,8 @@ jobs:
   determine-next-release-version:
     name: Determine next Release version
     uses: ./.github/workflows/determine-next-release-version.yaml
+    permissions:
+      contents: read  # Required for checking out the code
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -54,6 +58,8 @@ jobs:
     name: Build and verify tests
     needs: determine-next-release-version
     uses: ./.github/workflows/dotnet-build-and-verify.yaml
+    permissions:
+      contents: read  # Required for checking out the code
     with:
       configuration: Release  # ${{ env.CONFIGURATION }}
       dotnet-versions: 10.0.x  # ${{ env.DOTNET_CORE_VERSION }}
