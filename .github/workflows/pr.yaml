@@ -18,6 +18,8 @@ jobs:
   # Determining next release version from current release version
   determine-next-release-version:
     name: Determine next Release version
+    permissions:
+      contents: read  # Required for checking out the code
     uses: ./.github/workflows/determine-next-release-version.yaml
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
