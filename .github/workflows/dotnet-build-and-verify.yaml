@@ -1,5 +1,7 @@
 ---
 name: Reusable .NET Build & Verify Tests Pass
+permissions:
+  contents: read  # Required for checking out the code
 
 on:  # yamllint disable-line rule:truthy
   workflow_call:
@@ -38,12 +40,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ inputs.dotnet-versions }}
           cache: true
@@ -69,7 +71,7 @@ jobs:
         if: >
           ${{ steps.run-tests.outcome != 'skipped' &&
             steps.run-tests.outcome != 'cancelled' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: test-results
           path: "**/*.trx"
@@ -78,9 +80,10 @@ jobs:
         run: >
           dotnet pack --configuration ${{ inputs.configuration }}
           -p:Version=${{ inputs.version }} -o bin/${{ inputs.configuration }}
+          -p:GenerateSBOM=true
 
       - name: Upload Nuget Packages as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ inputs.artifact-name }}
           path: "src/bin/${{ inputs.configuration }}/*.nupkg"

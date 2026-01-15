@@ -35,6 +35,8 @@
 # $${{ needs.determine_next_release_version.outputs.version }}
 ---
 name: Determine next Release version number
+permissions:
+  contents: read  # Required for checking out the code
 
 on:  # yamllint disable-line rule:truthy
   workflow_call:
@@ -78,7 +80,7 @@ jobs:
       current_version: ${{ steps.determine_new_version.outputs.current_version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Get latest release info
