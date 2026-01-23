@@ -10,7 +10,13 @@
 [![GitHub Repo forks](https://img.shields.io/github/forks/peteraritchie/Pri.ProductivityExtensions.Source?style=flat)](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source/forks "# of forks of this repo.")
 [![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.codetabs.com%2Fv1%2Floc%2F%3Fgithub%3Dpeteraritchie%2FPri.ProductivityExtensions.Source&query=%24%5B0%5D.linesOfCode.&label=LOC)](https://github.com/peteraritchie/Pri.ProductivityExtensions.Source)
 
-Source code to enable modern C# features in .NET Standard 2.0 libraries     
+> [!NOTE]
+> An example of a source-only NuGet package from code to deployed NuGet package.
+> 
+> If you're looking for a source-only package to enable more C# fatures, please
+> checkout [Polyfill](https://github.com/SimonCropp/Polyfill).
+
+Source code to enable modern C# features in .NET Standard 2.0 libraries.
 
 Since .NET Standard 2.0 was created a variety of C# language features have
 been created that leverage/depend on types in in the BCL. Including, but
