@@ -42,7 +42,7 @@ namespace System;
 /// </code>
 /// </remarks>
 [Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-public readonly struct Index : IEquatable<Index>
+internal readonly struct Index : IEquatable<Index>
 {
 	private readonly int _value;
 
@@ -180,7 +180,7 @@ public readonly struct Index : IEquatable<Index>
 /// </code>
 /// </remarks>
 [Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-public readonly struct Range : IEquatable<Range>
+internal readonly struct Range : IEquatable<Range>
 {
 	/// <summary>Represent the inclusive start index of the Range.</summary>
 	public Index Start { get; }

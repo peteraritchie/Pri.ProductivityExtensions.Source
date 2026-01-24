@@ -13,7 +13,7 @@
         <projectUrl>https://github.com/peteraritchie/Pri.ProductivityExtensions.Source</projectUrl>
         <repository type="git" url="https://github.com/peteraritchie/Pri.ProductivityExtensions.Source"/>
         <description>Productivity Extensions included as source to provide modern C#/.NET support in .NET Standard 2.0 projects.</description>
-        <releaseNotes>Version 1.0.0.</releaseNotes>
+        <releaseNotes>Added int-only properties support and deconstruct support for DictionaryEntry, DateTime, KeyValuePair&lt;Tk,Tv&gt;.</releaseNotes>
         <readme>README.md</readme>
         <copyright>© 2025 Peter Ritchie</copyright>
         <tags>source standard productivity modern</tags>

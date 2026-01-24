@@ -29,8 +29,11 @@
 //     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System.Runtime.CompilerServices;
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 #pragma warning disable IDE0130
+// ReSharper disable once CheckNamespace
 namespace System;
 #pragma warning restore IDE0130
 

@@ -7,4 +7,93 @@
         <NuSpecProperties>version=$(Version)</NuSpecProperties>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <WarningLevel>9999</WarningLevel>
+      <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <WarningLevel>9999</WarningLevel>
+      <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Condition="'$(GenerateSBOM)' == 'true'" Include="Microsoft.Sbom.Targets" Version="4.1.4" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(NoFriends)' != 'true'">
+    <InternalsVisibleTo Include="$(AssemblyName).Examples" />
+    <InternalsVisibleTo Include="$(AssemblyName).Test" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Style</_Parameter1>
+      <_Parameter2>IDE1006:Naming Styles</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Maintainability</_Parameter1>
+      <_Parameter2>PRm1001:XML Comments Not Complete</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Maintainability</_Parameter1>
+      <_Parameter2>PRm1010:Method Name Does Not Have Leading Transitive Verb</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Maintainability</_Parameter1>
+      <_Parameter2>PRm1011:Boolean Property Name Does Not Start With a Future Tense of Verb 'Able'</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>CodeQuality</_Parameter1>
+      <_Parameter2>IDE0079:Remove unnecessary suppression</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Style</_Parameter1>
+      <_Parameter2>IDE0045:Convert to conditional expression</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Design</_Parameter1>
+      <_Parameter2>PRd1001:Consider Lazy Initialization For Read Only Properties</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Style</_Parameter1>
+      <_Parameter2>IDE0090:Use 'new(...)'</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Style</_Parameter1>
+      <_Parameter2>IDE0038:Use pattern matching</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Style</_Parameter1>
+      <_Parameter2>IDE0290:Use primary constructor</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Style</_Parameter1>
+      <_Parameter2>IDE0046:Convert to conditional expression</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.SuppressMessage">
+      <_Parameter1>Maintainability</_Parameter1>
+      <_Parameter2>PRm1000:XML Comments Not Present</_Parameter2>
+      <Justification>&lt;Pending&gt;</Justification>
+      <Scope>module</Scope>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>
