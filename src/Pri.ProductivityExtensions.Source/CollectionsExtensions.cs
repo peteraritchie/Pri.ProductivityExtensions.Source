@@ -53,6 +53,6 @@ public static class CollectionsExtensions
 		/// A singleton instance of an empty IReadOnlyCollection
 		/// </summary>
 		public static IReadOnlyCollection<T> Empty
-			=> new ReadOnlyCollection<T>(new Collection<T>());
+			=> new ReadOnlyCollection<T>([]);
 	}
 }
