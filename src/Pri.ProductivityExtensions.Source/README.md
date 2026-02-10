@@ -11,6 +11,7 @@ not limited to:
 - `[DoesNotReturn]`
 - `[NotNullWhen]`
 - `Empty` static property for `IReadOnlyCollection<T>` and `IReadOnlyDictionary<TKey, TValue>`.
+- `required` modifier indicating that the field or property it applies to must be initialized by an object initializer.
 
 This source-only library, when added to a .NET Standard 2.0 class library,
 creates internal versions of the types necessary to enable the above
