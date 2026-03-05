@@ -71,7 +71,7 @@ jobs:
         if: >
           ${{ steps.run-tests.outcome != 'skipped' &&
             steps.run-tests.outcome != 'cancelled' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-results
           path: "**/*.trx"
@@ -83,7 +83,7 @@ jobs:
           -p:GenerateSBOM=true
 
       - name: Upload Nuget Packages as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ inputs.artifact-name }}
           path: "src/bin/${{ inputs.configuration }}/*.nupkg"
